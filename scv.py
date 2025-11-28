@@ -10,8 +10,7 @@ def generar_dataset():
     promocion = np.random.randint(0, 2, n_registros)
     fin_semana = np.random.randint(0, 2, n_registros)
     # Fórmula base: ventas = 100 + 8*temperatura + 50*promocion + 30*fin_semana + ruido
-    ventas = 100 + 8*temperatura + 50*promocion + 30*fin_semana +
-    np.random.normal(0, 20, n_registros)
+    ventas = 100 + 8*temperatura + 50*promocion + 30*fin_semana + np.random.normal(0, 20, n_registros)
     dataset = pd.DataFrame({
     'Temperatura': temperatura,
     'Promocion': promocion,
