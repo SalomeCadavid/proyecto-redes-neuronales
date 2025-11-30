@@ -8,4 +8,12 @@ def modelo_ventas_simple():
 
     # Cargar dataset
     df = pd.read_csv('data/dataset_sintetico.csv')
+    
+        # Preparar datos (solo temperatura)
+    X = df['Temperatura']
+    y = df['Ventas']
+
+    # Crear modelo (1 neurona)
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.Dense(units=1, input_shape=[1]))
 
