@@ -22,3 +22,4 @@ def modelo_ventas_simple():
         optimizer=tf.keras.optimizers.Adam(0.1),
         loss='mean_squared_error'
     )
+
