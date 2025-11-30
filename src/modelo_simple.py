@@ -25,3 +25,6 @@ def modelo_ventas_simple():
     
     # Entrenamiento
     history = model.fit(X, y, epochs=500, verbose=0)
+    
+    # Guardar modelo
+    model.save('modelos/modelo_simple.h5')
