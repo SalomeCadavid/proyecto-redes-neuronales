@@ -9,3 +9,7 @@ def modelo_ventas_multiple():
     # -------------------- PARTE PABLITO --------------------
     # Cargar dataset
     df = pd.read_csv('data/dataset_sintetico.csv')
+
+    # Seleccionar features y target
+    X = df[['Temperatura', 'Promocion', 'Fin_de_Semana']]
+    y = df['Ventas']
