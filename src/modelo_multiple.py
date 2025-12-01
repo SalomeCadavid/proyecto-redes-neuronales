@@ -14,6 +14,8 @@ def modelo_ventas_multiple():
     X = df[['Temperatura', 'Promocion', 'Fin_de_Semana']]
     y = df['Ventas']
 
+
+# -------------------- PARTE santiago --------------------
     # Normalizar datos
     scaler_x = MinMaxScaler()
     scaler_y = MinMaxScaler()
