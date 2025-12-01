@@ -37,3 +37,4 @@ def modelo_ventas_simple():
     plt.ylabel('Loss')
     plt.savefig('resultados/graficos/loss_modelo_simple.png')
     plt.close()
+
