@@ -22,4 +22,10 @@ def modelo_ventas_simple():
         optimizer=tf.keras.optimizers.Adam(0.1),
         loss='mean_squared_error'
     )
+    
+    # Entrenamiento
+    history = model.fit(X, y, epochs=500, verbose=0)
+    
+    # Guardar modelo
+    model.save('modelos/modelo_simple.h5')
 
