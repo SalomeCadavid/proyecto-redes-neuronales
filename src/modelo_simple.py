@@ -45,3 +45,4 @@ def modelo_ventas_simple():
     print(predicciones.flatten())
 
     return model, history, X, y
+
