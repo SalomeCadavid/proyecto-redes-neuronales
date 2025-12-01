@@ -37,5 +37,5 @@ def modelo_ventas_multiple():
         tf.keras.layers.Dense(1, activation='linear')
     ]) 
     
-    # Compilar
+    # Compilar 
     model.compile(optimizer='adam', loss='mean_squared_error') 
