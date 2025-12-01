@@ -37,4 +37,12 @@ def modelo_ventas_simple():
     plt.ylabel('Loss')
     plt.savefig('resultados/graficos/loss_modelo_simple.png')
     plt.close()
+    
+    # Predicciones de prueba
+    temperaturas_test = [15, 20, 30, 40]
+    predicciones = model.predict(temperaturas_test)
+    print("Predicciones para temperaturas:", temperaturas_test)
+    print(predicciones.flatten())
+
+    return model, history, X, y
 
