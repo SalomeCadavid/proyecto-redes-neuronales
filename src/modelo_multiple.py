@@ -27,3 +27,12 @@ def modelo_ventas_multiple():
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled, y_scaled, test_size=0.2
     )
+    
+    # -------------------- PARTE RODAS --------------------
+    # Modelo profundo
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(100, activation='relu', input_shape=(3,)),
+        tf.keras.layers.Dense(100, activation='relu'),
+        tf.keras.layers.Dense(100, activation='relu'),
+        tf.keras.layers.Dense(1, activation='linear')
+    ])
