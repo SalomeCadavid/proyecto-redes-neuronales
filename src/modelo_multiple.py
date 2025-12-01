@@ -57,4 +57,4 @@ def modelo_ventas_multiple():
 
 # EJECUTAR
 modelo_multiple, hist_multiple, scaler_x, scaler_y, X_test, y_test = modelo_ventas_multiple()
-    model.compile(optimizer='adam', loss='mean_squared_error') 
+
