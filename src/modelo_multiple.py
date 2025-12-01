@@ -28,6 +28,18 @@ def modelo_ventas_multiple():
         X_scaled, y_scaled, test_size=0.2
     )
     
+    # -------------------- PARTE RODAS --------------------
+    # Modelo profundo
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(100, activation='relu', input_shape=(3,)),
+        tf.keras.layers.Dense(100, activation='relu'),
+        tf.keras.layers.Dense(100, activation='relu'),
+        tf.keras.layers.Dense(1, activation='linear')
+    ]) 
+    
+    # Compilar 
+    model.compile(optimizer='adam', loss='mean_squared_error') 
+    
     # -------------------- PARTE SAMUEL --------------------
     # Entrenar
     history = model.fit(
@@ -37,3 +49,11 @@ def modelo_ventas_multiple():
         validation_split=0.2,
         verbose=1
     )
+    
+    # Guardar modelo
+    model.save('modelos/modelo_multiple.h5')
+
+    return model, history, scaler_x, scaler_y, X_test, y_test
+
+# EJECUTAR
+modelo_multiple, hist_multiple, scaler_x, scaler_y, X_test, y_test = modelo_ventas_multiple()
