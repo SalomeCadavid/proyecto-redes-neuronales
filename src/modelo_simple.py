@@ -28,4 +28,13 @@ def modelo_ventas_simple():
     
     # Guardar modelo
     model.save('modelos/modelo_simple.h5')
+    
+    
+    # Graficar pérdida
+    plt.plot(history.history['loss'])
+    plt.title('Pérdida del Modelo Simple')
+    plt.xlabel('Épocas')
+    plt.ylabel('Loss')
+    plt.savefig('resultados/graficos/loss_modelo_simple.png')
+    plt.close()
 
