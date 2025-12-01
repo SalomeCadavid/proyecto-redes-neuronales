@@ -39,10 +39,14 @@ def modelo_ventas_simple():
     plt.close()
     
     # Predicciones de prueba
-    temperaturas_test = [15, 20, 30, 40]
+    temperaturas_test = np.array([15, 20, 30, 40]).reshape(-1, 1)
     predicciones = model.predict(temperaturas_test)
-    print("Predicciones para temperaturas:", temperaturas_test)
+    print("Predicciones para temperaturas:", temperaturas_test.flatten())
     print(predicciones.flatten())
 
+
     return model, history, X, y
+
+# Ejecutar
+modelo_simple, historial, X, y = modelo_ventas_simple()
 
