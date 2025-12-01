@@ -39,3 +39,22 @@ def modelo_ventas_multiple():
     
     # Compilar 
     model.compile(optimizer='adam', loss='mean_squared_error') 
+    
+    # -------------------- PARTE SAMUEL --------------------
+    # Entrenar
+    history = model.fit(
+        X_train, y_train,
+        epochs=100,
+        batch_size=32,
+        validation_split=0.2,
+        verbose=1
+    )
+    
+    # Guardar modelo
+    model.save('modelos/modelo_multiple.h5')
+
+    return model, history, scaler_x, scaler_y, X_test, y_test
+
+# EJECUTAR
+modelo_multiple, hist_multiple, scaler_x, scaler_y, X_test, y_test = modelo_ventas_multiple()
+    model.compile(optimizer='adam', loss='mean_squared_error') 
