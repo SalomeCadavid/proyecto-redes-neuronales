@@ -20,3 +20,8 @@ def modelo_ventas_multiple():
 
     X_scaled = scaler_x.fit_transform(X)
     y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
+
+    # Split datos
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_scaled, y_scaled, test_size=0.2
+    )
