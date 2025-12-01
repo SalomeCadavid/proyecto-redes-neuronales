@@ -27,3 +27,13 @@ def modelo_ventas_multiple():
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled, y_scaled, test_size=0.2
     )
+    
+    # -------------------- PARTE SAMUEL --------------------
+    # Entrenar
+    history = model.fit(
+        X_train, y_train,
+        epochs=100,
+        batch_size=32,
+        validation_split=0.2,
+        verbose=1
+    )
