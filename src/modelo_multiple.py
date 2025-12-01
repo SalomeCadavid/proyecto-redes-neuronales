@@ -13,3 +13,10 @@ def modelo_ventas_multiple():
     # Seleccionar features y target
     X = df[['Temperatura', 'Promocion', 'Fin_de_Semana']]
     y = df['Ventas']
+
+    # Normalizar datos
+    scaler_x = MinMaxScaler()
+    scaler_y = MinMaxScaler()
+
+    X_scaled = scaler_x.fit_transform(X)
+    y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
