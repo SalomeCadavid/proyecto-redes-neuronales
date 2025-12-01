@@ -38,4 +38,4 @@ def modelo_ventas_multiple():
     ])
     
     # Compilar
-    model.compile(optimizer='adam', loss='mean_squared_error')
+    model.compile(optimizer='adam', loss='mean_squared_error') 
