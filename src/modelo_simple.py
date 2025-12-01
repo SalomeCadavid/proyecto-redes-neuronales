@@ -28,3 +28,4 @@ def modelo_ventas_simple():
     
     # Guardar modelo
     model.save('modelos/modelo_simple.h5')
+
