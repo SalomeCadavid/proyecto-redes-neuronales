@@ -25,3 +25,15 @@ def crear_dashboard():
     temp = st.slider("Temperatura (°C)", 15, 40, 25)
     promocion = st.selectbox("¿Hay promoción?", [0, 1])
     fin_semana = st.selectbox("¿Es fin de semana?", [0, 1])
+    
+    if st.button("Predecir Ventas"):
+        # ---- PREDICCIÓN MODELO SIMPLE ----
+        pred_simple = modelo_simple.predict([[temp]]).flatten()[0]
+
+        # ---- PREDICCIÓN MODELO MÚLTIPLE ----
+        entrada_multi = scaler_x.transform([[temp, promocion, fin_semana]])
+        pred_multi = modelo_multiple.predict(entrada_multi).flatten()[0]
+        pred_multi = scaler_y.inverse_transform([[pred_multi]])[0][0]
+
+        st.write(f"### Predicción Modelo Simple: **${pred_simple:,.2f}**")
+        st.write(f"### Predicción Modelo Múltiple: **${pred_multi:,.2f}**")
