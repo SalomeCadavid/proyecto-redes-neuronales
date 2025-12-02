@@ -1,15 +1,10 @@
-# sistema_integrado.py
-
+import streamlit as st
+import pandas as pd
+import tensorflow as tf
 import numpy as np
-from modelo_simple import ModeloSimple
-from modelo_multiple import ModeloMultiple
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
 
-class SistemaIntegrado:
-    def __init__(self):
-        self.modelo_simple = ModeloSimple()
-        self.modelo_multiple = ModeloMultiple()
-        
-    def entrenar_modelos(self, X_train, y_train):
-            self.modelo_simple.entrenar(X_train, y_train)
-            self.modelo_multiple.entrenar(X_train, y_train)
-            print("Entrenamiento completado en ambos modelos.")      
+# Cargar modelos
+modelo_simple = tf.keras.models.load_model("modelos/modelo_simple.h5")
+modelo_multiple = tf.keras.models.load_model("modelos/modelo_multiple.h5")
