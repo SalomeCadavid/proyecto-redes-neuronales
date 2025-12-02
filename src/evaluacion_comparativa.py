@@ -38,3 +38,7 @@ def evaluar_modelos():
 
     # Desnormalizar
     pred_mult = scaler_y.inverse_transform(pred_mult_scaled)
+    
+    # Métricas modelo múltiple
+    mse_mult = mean_squared_error(df['Ventas'], pred_mult)
+    mae_mult = mean_absolute_error(df['Ventas'], pred_mult)
