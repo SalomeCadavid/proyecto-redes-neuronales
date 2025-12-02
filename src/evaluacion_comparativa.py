@@ -32,3 +32,9 @@ def evaluar_modelos():
 
     X_scaled = scaler_x.fit_transform(X_mult)
     y_scaled = scaler_y.fit_transform(df['Ventas'].values.reshape(-1, 1))
+    
+    # Predicción con el modelo múltiple
+    pred_mult_scaled = modelo_multiple.predict(X_scaled)
+
+    # Desnormalizar
+    pred_mult = scaler_y.inverse_transform(pred_mult_scaled)
