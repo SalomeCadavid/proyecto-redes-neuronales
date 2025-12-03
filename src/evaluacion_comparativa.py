@@ -52,3 +52,13 @@ def evaluar_modelos():
     plt.title("Comparación Modelo Simple")
     plt.savefig("resultados/graficos/comparacion_simple.png")
     plt.close()
+    
+    # 2. Gráfico modelo múltiple
+    plt.figure(figsize=(8, 5))
+    plt.scatter(df['Ventas'], pred_mult, alpha=0.7)
+    plt.xlabel("Ventas reales")
+    plt.ylabel("Predicción modelo múltiple")
+    plt.title("Comparación Modelo Múltiple")
+    plt.savefig("resultados/graficos/comparacion_multiple.png")
+    plt.close()
+
