@@ -47,3 +47,5 @@ def crear_dashboard():
         ax.bar(modelos, valores)
         ax.set_ylabel("Ventas Predichas")
         ax.set_title("Comparación de Modelos")
+        
+        st.pyplot(fig)
