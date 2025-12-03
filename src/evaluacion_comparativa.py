@@ -42,3 +42,13 @@ def evaluar_modelos():
     # Métricas modelo múltiple
     mse_mult = mean_squared_error(df['Ventas'], pred_mult)
     mae_mult = mean_absolute_error(df['Ventas'], pred_mult)
+    
+    # -------------------- PARTE ISAAC --------------------
+    # 1. Gráfico modelo simple
+    plt.figure(figsize=(8, 5))
+    plt.scatter(df['Ventas'], pred_simple, alpha=0.7)
+    plt.xlabel("Ventas reales")
+    plt.ylabel("Predicción modelo simple")
+    plt.title("Comparación Modelo Simple")
+    plt.savefig("resultados/graficos/comparacion_simple.png")
+    plt.close()
