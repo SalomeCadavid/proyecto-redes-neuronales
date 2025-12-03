@@ -37,3 +37,15 @@ def crear_dashboard():
 
         st.write(f"### Predicción Modelo Simple: **${pred_simple:,.2f}**")
         st.write(f"### Predicción Modelo Múltiple: **${pred_multi:,.2f}**")
+        
+        # ----- COMPARATIVA VISUAL -----
+        st.subheader("Comparativa de resultados entre modelos")
+        
+        fig, ax = plt.subplots()
+        modelos = ["Simple", "Múltiple"]
+        valores = [pred_simple, pred_multi]
+        ax.bar(modelos, valores)
+        ax.set_ylabel("Ventas Predichas")
+        ax.set_title("Comparación de Modelos")
+        
+        st.pyplot(fig)
