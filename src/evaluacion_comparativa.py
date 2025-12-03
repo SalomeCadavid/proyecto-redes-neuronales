@@ -61,4 +61,10 @@ def evaluar_modelos():
     plt.title("Comparación Modelo Múltiple")
     plt.savefig("resultados/graficos/comparacion_multiple.png")
     plt.close()
+    
+    # Retornar métricas
+    return {
+        "Modelo_Simple": {"MSE": mse_simple, "MAE": mae_simple},
+        "Modelo_Multiple": {"MSE": mse_mult, "MAE": mae_mult}
+    }
 
