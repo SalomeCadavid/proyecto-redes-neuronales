@@ -37,3 +37,6 @@ def crear_dashboard():
 
         st.write(f"### Predicción Modelo Simple: **${pred_simple:,.2f}**")
         st.write(f"### Predicción Modelo Múltiple: **${pred_multi:,.2f}**")
+        
+        # ----- COMPARATIVA VISUAL -----
+        st.subheader("Comparativa de resultados entre modelos")
