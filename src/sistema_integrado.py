@@ -28,13 +28,17 @@ def crear_dashboard():
     
     if st.button("Predecir Ventas"):
         # ---- PREDICCIÓN MODELO SIMPLE ----
-        pred_simple = modelo_simple.predict([[temp]]).flatten()[0]
+        entrada_simple = np.array([[temp]], dtype=float)
+        pred_simple = modelo_simple.predict(entrada_simple).flatten()[0]
 
         # ---- PREDICCIÓN MODELO MÚLTIPLE ----
-        entrada_multi = scaler_x.transform([[temp, promocion, fin_semana]])
-        pred_multi = modelo_multiple.predict(entrada_multi).flatten()[0]
-        pred_multi = scaler_y.inverse_transform([[pred_multi]])[0][0]
+        entrada_multi = np.array([[temp, promocion, fin_semana]], dtype=float)
+        entrada_multi = scaler_x.transform(entrada_multi)
 
+        pred_multi_scaled = modelo_multiple.predict(entrada_multi).flatten()[0]
+        pred_multi = scaler_y.inverse_transform([[pred_multi_scaled]])[0][0]
+        
+        # Resultados en pantalla
         st.write(f"### Predicción Modelo Simple: **${pred_simple:,.2f}**")
         st.write(f"### Predicción Modelo Múltiple: **${pred_multi:,.2f}**")
         
@@ -49,3 +53,6 @@ def crear_dashboard():
         ax.set_title("Comparación de Modelos")
         
         st.pyplot(fig)
+        
+if __name__ == "__main__":
+    crear_dashboard()
