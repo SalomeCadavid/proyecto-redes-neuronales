@@ -60,6 +60,16 @@ def evaluar_modelos():
     plt.title("Comparación Modelo Múltiple")
     plt.savefig("resultados/graficos/comparacion_multiple.png")
     plt.close()
+    
+    # Comparación ambos modelos
+    plt.figure(figsize=(8,5))
+    plt.plot(df.index, df['Ventas'], label="Ventas reales")
+    plt.plot(df.index, pred_simple, label="Predicción Simple")
+    plt.plot(df.index, pred_mult, label="Predicción Múltiple")
+    plt.legend()
+    plt.title("Comparativa Modelos Simple vs Múltiple")
+    plt.savefig("resultados/graficos/comparativa_modelos.png")
+    plt.close()
 
 
 
@@ -68,6 +78,11 @@ def evaluar_modelos():
         "Modelo_Simple": {"MSE": mse_simple, "MAE": mae_simple},
         "Modelo_Multiple": {"MSE": mse_mult, "MAE": mae_mult}
     }
+
+resultados = evaluar_modelos()
+print("Resultados comparativos:")
+print(resultados)
+
 
 if __name__ == "__main__":
     evaluar_modelos()
