@@ -40,3 +40,10 @@ def crear_dashboard():
         
         # ----- COMPARATIVA VISUAL -----
         st.subheader("Comparativa de resultados entre modelos")
+        
+        fig, ax = plt.subplots()
+        modelos = ["Simple", "Múltiple"]
+        valores = [pred_simple, pred_multi]
+        ax.bar(modelos, valores)
+        ax.set_ylabel("Ventas Predichas")
+        ax.set_title("Comparación de Modelos")
