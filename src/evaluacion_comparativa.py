@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use('Agg')  # backend para guardar imágenes siempre
 import tensorflow as tf
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.preprocessing import MinMaxScaler
 
 
 def evaluar_modelos():
@@ -20,7 +21,7 @@ def evaluar_modelos():
     # Predicción modelo simple (usa solo Temperatura)
     temp = df['Temperatura'].values.reshape(-1, 1)
 
-    # Predicción SIN normalizar (modelo entrenado así)
+    # Predicción SIN normalizar (modelo simple entrenado así)
     pred_simple = modelo_simple.predict(temp)
 
     # Métricas modelo simple
@@ -33,8 +34,22 @@ def evaluar_modelos():
     # Features del modelo múltiple
     X_mult = df[['Temperatura', 'Promocion', 'Fin_de_Semana']].values
 
-    # Predicción del modelo múltiple (sin normalizar)
-    pred_mult = modelo_multiple.predict(X_mult)
+    # Normalización (IMPORTANTE: debe ser el MISMO proceso que en el entrenamiento)
+    scaler_x = MinMaxScaler()
+    scaler_y = MinMaxScaler()
+
+    # Ajustar scaler con TODO el dataset original
+    scaler_x.fit(X_mult)
+    scaler_y.fit(df['Ventas'].values.reshape(-1, 1))
+
+    # Normalizar features
+    X_scaled = scaler_x.transform(X_mult)
+
+    # Predicción
+    pred_mult_scaled = modelo_multiple.predict(X_scaled)
+
+    # Desnormalizar predicción para obtener valores reales de ventas
+    pred_mult = scaler_y.inverse_transform(pred_mult_scaled)
 
     # Métricas modelo múltiple
     mse_mult = mean_squared_error(df['Ventas'], pred_mult)
@@ -61,6 +76,16 @@ def evaluar_modelos():
     plt.savefig("resultados/graficos/comparacion_multiple.png")
     plt.close()
 
+    # Comparación ambos modelos
+    plt.figure(figsize=(8,5))
+    plt.plot(df.index, df['Ventas'], label="Ventas reales")
+    plt.plot(df.index, pred_simple, label="Predicción Simple")
+    plt.plot(df.index, pred_mult, label="Predicción Múltiple")
+    plt.legend()
+    plt.title("Comparativa Modelos Simple vs Múltiple")
+    plt.savefig("resultados/graficos/comparativa_modelos.png")
+    plt.close()
+
 
 
     # Retornar métricas
@@ -69,8 +94,15 @@ def evaluar_modelos():
         "Modelo_Multiple": {"MSE": mse_mult, "MAE": mae_mult}
     }
 
+
+resultados = evaluar_modelos()
+print("Resultados comparativos:")
+print(resultados)
+
+
 if __name__ == "__main__":
     evaluar_modelos()
     print("Ejecución completada.")
+
 
 
